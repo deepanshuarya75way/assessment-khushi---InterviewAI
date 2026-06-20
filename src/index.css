@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0f0f1a; }
+  ::-webkit-scrollbar-thumb { background: #4338ca; border-radius: 3px; }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface-700/60 backdrop-blur-md border border-white/5 rounded-2xl;
+  }
+  .glass-card-hover {
+    @apply glass-card hover:border-brand-500/30 hover:bg-surface-700/80 transition-all duration-300;
+  }
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-500 text-white font-semibold px-6 py-3 rounded-xl 
+           transition-all duration-200 hover:shadow-lg hover:shadow-brand-500/25 
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-surface-600 hover:bg-surface-500 border border-white/10 text-slate-200 
+           font-medium px-6 py-3 rounded-xl transition-all duration-200 active:scale-95;
+  }
+  .btn-ghost {
+    @apply text-slate-400 hover:text-white hover:bg-white/5 px-4 py-2 rounded-lg 
+           transition-all duration-200;
+  }
+  .input-field {
+    @apply w-full bg-surface-600 border border-white/10 rounded-xl px-4 py-3 text-white 
+           placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 
+           focus:ring-brand-500/50 transition-all duration-200;
+  }
+  .score-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-brand-400 mb-2;
+  }
+  .stat-card {
+    @apply glass-card p-5 flex flex-col gap-1;
+  }
+  .recording-pulse {
+    animation: recordingPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes recordingPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+  .transcript-area {
+    @apply min-h-[80px] bg-surface-800 border border-white/5 rounded-xl p-4 
+           text-slate-200 text-sm leading-relaxed resize-none focus:outline-none 
+           focus:border-brand-500 transition-all duration-200;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-violet-400 bg-clip-text text-transparent;
+  }
+  .video-frame {
+    @apply w-full aspect-video bg-surface-900 rounded-2xl overflow-hidden border border-white/5;
+  }
+}
+
+/* Interviewer avatar animation */
+.interviewer-speaking {
+  animation: speakPulse 0.6s ease-in-out infinite alternate;
+}
+@keyframes speakPulse {
+  0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); }
+  100% { box-shadow: 0 0 0 12px rgba(99,102,241,0); }
+}
+
+/* Progress bar shimmer */
+.progress-shimmer {
+  background: linear-gradient(90deg, #4338ca 0%, #818cf8 50%, #4338ca 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
